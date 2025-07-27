@@ -1,0 +1,330 @@
+===========================================
+ P‰‰kaupunkiseudun Matka-aikamatriisi 2013
+===========================================
+
+(scroll down for English description)
+
+Viimeksi p‰ivitetty 17.6.2019
+
+-------------
+YLEISKUVAUS
+-------------
+
+Aineisto k‰sitt‰‰ matka-aika- ja et‰isyystiedot k‰vellen, joukkoliikenteell‰ ja autolla kaikista p‰‰kaupunkiseudun YKR-ruuduista (13 231 kpl) 
+kaikkiin p‰‰kaupunkiseudun YKR-ruutuihin (13 231 kpl). Tulokset on laskettu ruutujen keskipisteist‰ k‰ytt‰en keskip‰iv‰n aikatauluja/ruuhkaisuusastetta (autoilu). 
+
+Aineisto on tuotetty Helsingin yliopiston Geotieteiden ja maantieteen laitoksen MetropAccess-hankkeessa (2010-2016), 
+http://www.helsinki.fi/science/accessibility/. Tyˆt‰ ovat rahoittaneet KatuMetro-tutkimusohjelma sek‰ Helsingin yliopisto. 
+
+Aineiston k‰yttˆ on k‰ytt‰j‰n omalla vastuulla. Aineiston tuottaja ei vastaa aineistoissa mahdollisesti esiintyvist‰ virheist‰, ep‰tarkkuuksista tai niiden k‰ytt‰misen mahdollisesti aiheuttamista vahingoista.
+
+--------------
+DATAN RAKENNE
+--------------
+
+Aineisto on jaettu 13 231 tekstitiedostoon kunkin reitin kohdepisteen mukaan. Yksi tiedosto sis‰lt‰‰ matka- ja matka-aikatietoja eri kulkumuodoilla (k‰vely, joukkoliikenne, autoilu) kustakin YKR-ruudusta 
+tiedoston nimen mukaiseen YKR-ruutuun. Kussakin tiedostossa on t‰ten aina 13231 rivi‰.
+
+Tiedostoissa on 9 ominaisuustietokentt‰‰: 1) from_id, 2) to_id, 3) walk_t, 4) walk_d, 5) pt_m_tt, 6) pt_m_t, 7) pt_m_d, 8) car_m_t, 9) car_m_d 
+
+Kenttien nimiss‰ esiintyv‰t lyhenteet:
+____________________________________________
+pt   | public transport = julkinen liikenne 
+car  | auto
+walk | k‰vely 
+m    | midday = keskip‰iv‰
+t    | time = aika
+tt   | total time = kokonaisaika
+d    | distance = et‰isyys
+--------------------------------------------
+
+
+Kenttien tietosis‰ltˆ on kuvattu alla:
+_______________________________________________________________________________________________________________________________________________
+from_id  |  Reitin l‰htˆpisteen‰ olleen YKR-ruudun ID-tunnus
+to_id  	 |  Reitin kohdepisteen‰ olleen YKR-ruudun ID-tunnus
+walk_t   |  Matka-aika l‰htˆruudusta kohderuutuun k‰vellen
+walk_d   |  K‰velymatkan pituus metrein‰
+pt_m_tt  |  Kokonaismatka-aika l‰htˆruudusta kohderuutuun keskip‰iv‰ll‰; sis‰lt‰‰ mahdollisen kotona odottelun reitin alussa 
+pt_m_t 	 |  Kokonaismatka-aika l‰htˆruudusta kohderuutuun keskip‰iv‰ll‰; matka-aika alkaa l‰hdett‰ess‰ kotoa liikkeelle 
+pt_m_d   |  Joukkoliikennematkan pituus metrein‰ keskip‰iv‰ll‰ 
+car_m_t  |  Kokonaismatka-aika autolla l‰htˆruudusta kohderuutuun keskip‰iv‰ll‰; matka-aika lasketaan kokonaismatkaketjun mukaan ovelta ovelle 
+car_m_d  |  Kokonaisautomatkan pituus metrein‰ keskip‰iv‰ll‰
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+NODATA-arvot on kuvattu arvolla -1.
+
+-----------------
+TUOTANTOHISTORIA
+-----------------
+
+AUTOREITITYS on tehty ArcGIS 10.2 -ohjelmiston OD Cost Matrix -tyˆkalulla. Tieverkkoaineistona on k‰ytetty Liikenneviraston kehitt‰m‰n Digiroad-aineiston (Digiroad K) pohjalta muokattua MetropAccess-Digiroadia,
+jossa segmenttien l‰pikulkuajat on muutettu realistisemmiksi m‰‰ritt‰m‰ll‰ tieluokkakohtaisia risteyshidasteita. Laskennan impedanssina on k‰ytetty tieverkkoaineiston matka-aikoja keskip‰iv‰ll‰.
+
+Laskennoissa on huomioitu lis‰ksi kokonaismatkaketjut: 
+1) euklidinen et‰isyys todellisesta l‰htˆpisteest‰ l‰himp‰‰n verkostoviivakohteeseen, 
+2) keskim‰‰r‰inen k‰velyaika pys‰kˆintipaikalle, 
+3) matka-aika autolla l‰htˆpisteest‰ kohdepisteeseen, 
+4) keskim‰‰r‰inen pys‰kˆintipaikan etsimiseen kuluva aika, 
+5) k‰vely pys‰kˆintipaikalta kohteeseen ja 
+6) euklidinen et‰isyys verkostoviivakohteesta todelliseen m‰‰r‰np‰‰h‰n. 
+
+Lis‰tietoja lˆytyy Timo Jaakkolan pro gradu -tyˆst‰ sek‰ vuoden 2014 Terran artikkelistamme:
+"Joukkoliikenteell‰, autolla ja k‰vellen: Avoin saavutettavuusaineisto p‰‰kaupunkiseudulla." (ks. lopun viitteet). 
+
+
+JOUKKOLIIKENNEREITITYS on tehty MetropAccess-Reititin tyˆkalulla, joka huomioi kokonaismatkaketjut joukkoliikenteell‰ l‰htˆpisteest‰ kohteeseen: 
+1) mahdollinen odottelu kotona, 
+2) k‰vely pys‰kille,
+3) odottelu pys‰kill‰, 
+4) matka-aika seuraavalle pys‰kille, 
+5) liikkumismuodon vaihtoon kuluva aika, 
+6) matka-aika seuraavalle pys‰kille ja 
+7) k‰vely kohteeseen. 
+
+Matka-matriisi 2013:n julkisen liikenteen reititykset perustuvat perjantain 8.4.2013 aikataulutietoihin. Reitityskellonajaksi valittiin keskip‰iv‰ klo 12.
+Lis‰tietoja haarukoinnista MetropAccess-Reitittimen k‰yttˆohjeesta.
+
+Keskip‰iv‰n tulokset ovat vertailukelpoisia matka-aikamatriisin uusimman version kanssa (vuosi 2015). 
+Ruuhka-ajan tulokset ovat uusi ominaisuus vuoden 2015 matka-aikamatriisissa eik‰ niit‰ lˆydy t‰st‰ matriisista.
+
+K‰velyreititys on myˆs laskettu MetropAccess-Reitittimell‰ s‰‰t‰m‰ll‰ joukkoliikennev‰lineet pois k‰ytˆst‰ erillisest‰ asetustiedostosta, 
+jolloin reitit perustuvat ainoastaan Open Street Mapin geometriaan. Sek‰ joukkoliikenne ett‰ k‰velyajossa k‰velynopeudeksi on asetettu 
+reittioppaan oletus 70 metri‰ minuutissa.  
+
+--------------------------------
+TUOTANTOON OSALLISTUNEET TAHOT
+--------------------------------
+
+Seuraavat henkilˆt ovat osallistuneet aineiston tuotantoon (aakkoj‰rjestyksess‰)
+
+- Timo Jaakkola, matka-aikamallin kehitt‰minen yksityisautoilun reittitoptimointiin
+- Juha J‰rvi, BusFaster Ltd, MetropAccess-Reittimen kehitt‰minen joukkoliikenteen ja k‰velyn reittioptimointiin
+- Perttu Saarsalmi, reititysten suunnitteluun osallistuminen, toteuttaminen ja dokumentointi
+- Maria Salonen, projektikoordinaattori, kaikki tuotantovaiheet
+- Henrikki Tenkanen, MetropAccess Digiroad -laskennan kehitt‰minen ArcGIS -ymp‰ristˆˆn ja MetropAccess-Matka-aikamatriisin koostaminen
+- Tuuli Toivonen, hankkeen johtaja, kaikki tuotantovaiheet
+
+Lis‰ksi Sakari J‰ppinen ja Jaani Lahtinen ovat antaneet arvokkaita kommentteja tyˆkalujen kehitt‰miseksi. 
+
+Matriisin vaatiman laskennan taustalla on k‰ytetty‰ kolmea keskeist‰ aineistoa: 
+- Digiroad - kansallinen tietietokanta (Copyright Liikennevirasto/Digiroad 2014) (pohja yksityisautoilun mallinnukselle)
+- HSL:n Journey Planner Kalkati.net XML  (pohja joukkoliikenteen mallinnukselle)
+- Open Street Map (pohja k‰velyn mallinnukselle) 
+
+-----------------
+VIITTAUSKƒYTƒNN÷T
+-----------------
+
+Jos k‰yt‰t P‰‰kaupunkiseudun-matka-aikamatriisia tai tarjoamiamme tyˆkaluja, toivomme, ett‰ viittaat laskennan pohjalla olevaan tyˆhˆn hyv‰n julkaisutavan mukaisesti.
+
+Voit viitata tyˆhˆmme n‰in seuraavasti.
+
+Datan/menetelmien kuvaus:
+Toivonen, T., M. Salonen, H. Tenkanen, P. Saarsalmi, T. Jaakkola & J. J‰rvi (2014). Joukkoliikenteell‰, autolla ja k‰vellen: Avoin saavutettavuusaineisto p‰‰kaupunkiseudulla. Terra 126: 3, 127-136. 
+
+Datan DOI-tunniste:
+Toivonen, T., M. Salonen, H. Tenkanen, P. Saarsalmi, T. Jaakkola & J. J‰rvi (2014). Helsinki Region Travel Time Matrix 2014. DOI: 10.13140/RG.2.1.2159.3683
+
+
+------------------------------------------------------------
+ESIMERKKEJƒ SAAVUTETTAVUUS-TY÷KALUJEN KƒYT÷STƒ TUTKIMUSTY÷SSƒ
+------------------------------------------------------------
+
+Saarsalmi, P., H. Tenkanen, O. J‰rv, M. Salonen & T. Toivonen (under review). Urban food accessibility: Integrating multimodality and temporality using open data. Health & Place (under review).
+
+Laatikainen, T., H. Tenkanen, M. Kytt‰ & T. Toivonen (2015). Comparing conventional and PPGIS approaches in measuring equality of access to urban aquatic environments. Landscape and Urban Planning 144, 22ñ33.
+
+Toivonen, T., M. Salonen, H. Tenkanen, P. Saarsalmi, T. Jaakkola & J. J‰rvi (2014). Joukkoliikenteell‰, autolla ja k‰vellen: Avoin saavutettavuusaineisto p‰‰kaupunkiseudulla. Terra 126: 3, 127-136. 
+
+Salonen, M. & Toivonen, T. (2013). Modelling travel time in urban networks: comparable measures for private car and public transport. Journal of Transport Geography 31, 143ñ153.
+
+Jaakkola, T. (2013). Paikkatietopohjainen menetelm‰ autoilun ajoaikojen ja kokonaismatka-aikojen mallintamiseen ñ esimerkkin‰ p‰‰kaupunkiseutu. Pro gradu -tutkielma. Helsingin yliopisto. 
+Geotieteiden ja maantieteen laitos.
+
+Lahtinen, J., Salonen, M. & Toivonen, T. (2013). Facility allocation strategies and the sustainability of service delivery: Modelling library patronage patterns and their related CO2-emissions. Applied Geography 44, 43-52.
+
+Salonen, M., Toivonen, T. & Vaattovaara, M. (2012). Arkiliikkumisen vaihtoehdoista monikeskuksistuvassa metropolissa: Kaksi n‰kˆkulmaa palvelujen saavutettavuuteen p‰‰kaupunkiseudulla.
+Yhdyskuntasuunnittelu 3/2012
+
+J‰ppinen,  S., Toivonen, T. & Salonen, M. (2013). Modelling the potential effect of shared bicycles on public transport travel times in Greater Helsinki: An open data approach. Applied Geography 43, 13-24.
+
+
+---------
+LISENSSI 
+---------
+
+P‰‰kaupunkiseudun Matka-aikamatriisi 2013, jonka tekij‰ on MetropAccess-hanke / Accessibility Research Group (Helsingin Yliopisto) on lisensoitu Creative Commons Nime‰ 4.0 Kansainv‰linen -lisenssill‰.
+Lis‰tietoa lisenssist‰: http://creativecommons.org/licenses/by/4.0/deed.fi
+
+Mik‰li aineiston pohjalta laaditaan tieteellisi‰ julkaisuja, toivomme, ett‰ tekij‰t olisivat yhteydess‰ hankkeen johtajaan.
+
+====================================================================================================================================================================================================
+====================================================================================================================================================================================================
+
+IN ENGLISH.
+
+=============================================
+ Helsinki Region Travel Time Matrix 2013
+=============================================
+
+Last modified 17.6.2019.
+
+-----------------
+DATA DESCRIPTION
+-----------------
+
+The data consists of travel time and distance information of the routes that have been calculated from all SYKE (Finnish Environment Institute)
+YKR grid cell centroids (n = 13231) to all YKR grid cell centroids (n = 13231) by walking, public transportion and car. 
+The results have been calculated using midday (12:00) schedules/traffic conditions. 
+
+Data has been produced by the MetropAccess Project (2010-2016, http://www.helsinki.fi/science/accessibility/),
+at the Department of Geosciences and Geography, University of Helsinki. 
+
+The data may be used freely (see the licence text below). We do not take any responsibility for any mistakes, errors or other deficiencies in the data.
+
+--------------
+DATA STRUCTURE
+--------------
+
+The data have been divided into 13231 text files according to destinations of the routes. One file 
+includes the routes from all YKR grid cells to a particular destination grid cell. All files have been named
+according to the destination grid cell code and each file includes 13231 rows.
+
+
+Each file consists of 9 attribute fields: 1) from_id, 2) to_id, 3) walk_t, 4) walk_d, 5) pt_m_tt, 6) pt_m_t, 7) pt_m_d, 8) car_m_t, 9) car_m_d  
+
+The fields are separated by semicolon in the text files.
+
+
+Abbreviations in the field names:
+____________________________________________
+pt   | public transport 
+car  | car
+walk | walk
+m    | midday
+t    | time
+tt   | total time
+d    | distance
+--------------------------------------------
+
+All fields are explained below:
+____________________________________________________________________________________________________________________________________________________________________________________________
+from_id  |  ID number of the origin grid cell
+to_id  	 |  ID number of the destination grid cell
+walk_t   |  Travel time from origin to destination by walking
+walk_d   |  Distance in meters of the walking route
+pt_m_tt  |  Travel time from origin to destination by public transportation in midday traffic; whole travel chain has been taken into acount including the waiting time at home
+pt_m_t   |  Travel time from origin to destination by public transportation in midday traffic; whole travel chain has been taken into account excluding the waiting time at home
+pt_m_d 	 |  Distance in meters of the public transportation route in midday traffic
+car_m_t  |  Travel time from origin to destination by private car in midday traffic; the whole travel chain has been taken into account (see "Methods" section below)
+car_m_d	 |  Distance in meters of the private car route in midday traffic
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NODATA values have been described as value -1. 
+
+
+-----------------
+METHODS
+-----------------
+
+The routes by CAR have been calculated in ArcGIS 10.2 software by using the OD Cost Matrix tool in the Network Analyst toolkit. MetropAccess-Digiroad (modified from the original Digiroad data
+provided by Finnish Transport Agency) has been used as Network Dataset in which the travel times of the road segments are made more realistic by adding crossroad impedances for different road classes. 
+The calculations have been repeated for two times of the day using the midday impedance (i.e. travel times outside rush hour) in the calculations.
+
+The whole travel chain ("door-to-door approach") is taken into account in the calculations: 
+1) walking time from the real origin to the nearest network location (based on Euclidean distance), 
+2) average walking time from the origin to the parking lot,
+3) travel time from parking lot to destination, 
+4) average time for searching a parking lot, 
+5) walking time from parking lot to nearest network location of the destination and 
+6) walking time from network location to the real destination (based on Euclidean distance).
+
+The routes by PUBLIC TRANSPORATION have been calculated by using the MetropAccess-Reititin tool which also takes into account the whole travel chains from the origin to the destination:
+1) possible waiting at home before leaving, 
+2) walking from home to the transit stop, 
+3) waiting at the transit stop, 
+4) travel time to next transit stop, 
+5) transport mode change, 
+6) travel time to next transit stop and 
+7) walking to the destination. 
+
+Travel times by public transportation have been optimized using 10 different departure times within the calculation hour using so called Golomb ruler. 
+The fastest route from these calculations are selected for the final travel time matrix.
+
+Calculations of Helsinki Region Travel Time Matrix 2014 are based on schedules of Friday 8.4.2013 at Noon (optimized between 12:00-13:00 ) 
+==> Comparable with the latest version of Helsinki Region Travel Time Matrix (2015).
+
+The routes by walking were also calculated using the MetropAccess-Reititin by disabling all motorized transport modesin the calculation. Thus, all routes are based on the Open Street Map geometry.
+The walking speed has been adjusted to 70 meters per minute, which is the default speed in the HSL Journey Planner (also in the calculations by public transportation).
+
+--------------
+CONTIRIBUTIONS 
+--------------
+
+The following people participated in the development of the data set (in aplhabetical order)
+
+- Timo Jaakkola, development of the travel time model for private cars.
+- Juha J‰rvi, BusFaster Ltd, programming and design of the MetropAccess-Reitin, used in publid transportation and walk calculations
+- Perttu Saarsalmi, planning and running the routings, data management and documentation
+- Maria Salonen, project manager, participation in all steps
+- Henrikki Tenkanen, tool implementation for private car calculation and packaging of the full data set 
+- Tuuli Toivonen, project leader, participation in all steps
+
+Additionally Sakari J‰ppinen and Jaani Lahtinen have provided valuable comments on the tool/data development. 
+
+Three data resources were used for the calculations: 
+- Digiroad - A National Road and Street Database (Copyright Liikennevirasto/Digiroad 2014) (base for the private car modeling)
+- Journey Planner Kalkati.net XML data by Helsinki Regional Transport Authority (HSL) (base for public transportation modeling)
+- Open Street Map (base for walk modeling) 
+
+The work was funded by KatuMetro research programme and the University of Helsinki during 2010-2016. 
+
+
+-------------------
+CITATION PRACTICES
+-------------------
+
+If you use Helsinki Region Travel Time Matrix 2013 dataset or related tools in your work, we encourage you to cite properly to our work.
+
+You can cite to our work as follows:
+
+Data/Tools description:
+Toivonen, T., M. Salonen, H. Tenkanen, P. Saarsalmi, T. Jaakkola & J. J‰rvi (2014). Joukkoliikenteell‰, autolla ja k‰vellen: Avoin saavutettavuusaineisto p‰‰kaupunkiseudulla. Terra 126: 3, 127-136. 
+
+DOI name for the dataset:
+Toivonen, T., M. Salonen, H. Tenkanen, P. Saarsalmi, T. Jaakkola & J. J‰rvi (2014). Helsinki Region Travel Time Matrix 2014. DOI: 10.13140/RG.2.1.2159.3683 
+
+
+---------------------------------------------------------------------
+EXAMPLES OF ARTICLES IN WHICH OUR ACCESSIBILITY TOOLS HAVE BEEN USED
+---------------------------------------------------------------------
+
+Saarsalmi, P., H. Tenkanen, O. J‰rv, M. Salonen & T. Toivonen (under review). Urban food accessibility: Integrating multimodality and temporality using open data. Health & Place (under review).
+
+Laatikainen, T., H. Tenkanen, M. Kytt‰ & T. Toivonen (2015). Comparing conventional and PPGIS approaches in measuring equality of access to urban aquatic environments. Landscape and Urban Planning 144, 22ñ33.
+
+Toivonen, T., M. Salonen, H. Tenkanen, P. Saarsalmi, T. Jaakkola & J. J‰rvi (2014). Joukkoliikenteell‰, autolla ja k‰vellen: Avoin saavutettavuusaineisto p‰‰kaupunkiseudulla. Terra 126: 3, 127-136. 
+
+Salonen, M. & Toivonen, T. (2013). Modelling travel time in urban networks: comparable measures for private car and public transport. Journal of Transport Geography 31, 143ñ153.
+
+Jaakkola, T. (2013). Paikkatietopohjainen menetelm‰ autoilun ajoaikojen ja kokonaismatka-aikojen mallintamiseen ñ esimerkkin‰ p‰‰kaupunkiseutu. Pro gradu -tutkielma. Helsingin yliopisto. 
+Geotieteiden ja maantieteen laitos.
+
+Lahtinen, J., Salonen, M. & Toivonen, T. (2013). Facility allocation strategies and the sustainability of service delivery: Modelling library patronage patterns and their related CO2-emissions. Applied Geography 44, 43-52.
+
+Salonen, M., Toivonen, T. & Vaattovaara, M. (2012). Arkiliikkumisen vaihtoehdoista monikeskuksistuvassa metropolissa: Kaksi n‰kˆkulmaa palvelujen saavutettavuuteen p‰‰kaupunkiseudulla.
+Yhdyskuntasuunnittelu 3/2012
+
+J‰ppinen,  S., Toivonen, T. & Salonen, M. (2013). Modelling the potential effect of shared bicycles on public transport travel times in Greater Helsinki: An open data approach. Applied Geography 43, 13-24.
+
+
+---------
+LICENSE
+---------
+
+Helsinki Region Travel Time Matrix 2013 by MetropAccess-project/ Accessibility Research Group (University of Helsinki) is licensed under a Creative Commons Attribution 4.0 International License. 
+More information about license: http://creativecommons.org/licenses/by/4.0/
+
+If the datasets are being used extensively in scientific research, we welcome the opportunity for co-authorship of papers. Please contact project leader to discuss about the matter.
+
