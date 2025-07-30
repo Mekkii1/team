@@ -1,0 +1,70 @@
+openapi: 3.0.0
+info:
+  title: Travel Matrix Access Visualization API
+  version: 1.0.0
+  description: |
+    Upload one or more `.txt` travel matrix files and generate GeoPackages and PNG maps showing car travel times.
+    This API performs a geospatial join with a base Helsinki grid and visualizes the `car_r_t` (car travel time) field.
+
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+paths:
+  /AccessViz:
+    post:
+      summary: Process and visualize uploaded travel matrix files
+      description: |
+        Accepts multiple `.txt` files containing travel time matrices.
+        Each file is joined with a shapefile grid and visualized using `car_r_t` values.
+        The result is saved to disk as `.gpkg` and `.png` files.
+      operationId: processAccessViz
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                matrix_files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: One or more `.txt` matrix files to upload (semicolon-separated)
+      responses:
+        '200':
+          description: Files processed successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "All is good"
+        '400':
+          description: Invalid input or missing files
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                    example: "No matrix files provided."
+      tags:
+        - Matrix Upload and Visualization
+
+components:
+  schemas:
+    MatrixFile:
+      type: object
+      properties:
+        from_id:
+          type: integer
+          example: 5975371
+        to_id:
+          type: integer
+          example: 5975372
+        car_r_t:
+          type: integer
+          description: Car travel time in seconds or minutes
+          example: 420
