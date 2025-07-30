@@ -1,7 +1,0 @@
-pandas
-geopandas
-matplotlib
-mapclassify
-folium
-fastapi
-uvicorn
